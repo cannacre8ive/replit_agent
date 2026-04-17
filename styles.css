@@ -1,0 +1,156 @@
+:root {
+  color-scheme: light;
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --text: #1e2430;
+  --accent: #245bff;
+  --muted: #6a7487;
+  --border: #d9dfeb;
+  --good: #1f9d55;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem 2rem;
+}
+
+header h1 {
+  margin-bottom: 0.4rem;
+}
+
+header p {
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+.filters,
+.summary,
+.table-wrap,
+footer {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.9rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+input,
+select,
+button {
+  font: inherit;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.65rem;
+  background: #fff;
+}
+
+button {
+  cursor: pointer;
+}
+
+.actions {
+  align-self: end;
+}
+
+#resetBtn {
+  background: #edf1ff;
+  color: #1d3c93;
+  border-color: #c8d5ff;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 920px;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  padding: 0.7rem 0.5rem;
+  vertical-align: top;
+  font-size: 0.92rem;
+}
+
+.sort-btn {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  padding: 0;
+  font-weight: 600;
+}
+
+.sort-btn:hover {
+  color: var(--accent);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.badge {
+  border-radius: 999px;
+  background: #eef4ff;
+  color: #1f3f8d;
+  font-size: 0.78rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid #cad8ff;
+}
+
+.score {
+  color: var(--good);
+  font-weight: 700;
+}
+
+footer p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 760px) {
+  .container {
+    margin-top: 1rem;
+  }
+
+  table {
+    min-width: 760px;
+  }
+}

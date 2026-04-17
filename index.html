@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oregon Cannabis POS Comparison Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>Oregon Cannabis POS Comparison Dashboard</h1>
+        <p>
+          Compare BLAZE, Dutchie, Cova, IndicaOnline, Flowhub, Treez, and Green Bits by pricing,
+          features, and Oregon-focused compliance capabilities.
+        </p>
+      </header>
+
+      <section class="filters" aria-label="Dashboard Filters">
+        <h2>Filters</h2>
+        <div class="filters-grid">
+          <label>
+            Search vendor
+            <input id="searchInput" type="search" placeholder="Type vendor name" />
+          </label>
+
+          <label>
+            Max monthly cost ($)
+            <input id="maxPrice" type="number" min="0" step="50" placeholder="e.g. 800" />
+          </label>
+
+          <label>
+            Compliance requirement
+            <select id="complianceFilter">
+              <option value="">Any</option>
+              <option value="Metrc">METRC integration</option>
+              <option value="OLCC">OLCC reporting support</option>
+              <option value="Manifest">Delivery manifest support</option>
+              <option value="Tax">Oregon tax automation</option>
+              <option value="Audit">Audit log & user permissions</option>
+            </select>
+          </label>
+
+          <label>
+            Feature requirement
+            <select id="featureFilter">
+              <option value="">Any</option>
+              <option value="Ecommerce">E-commerce</option>
+              <option value="Loyalty">Loyalty</option>
+              <option value="Delivery">Delivery routing</option>
+              <option value="API">Open API</option>
+              <option value="MultiStore">Multi-store support</option>
+              <option value="Hardware">Hardware bundle</option>
+            </select>
+          </label>
+
+          <label>
+            Sort by
+            <select id="sortBy">
+              <option value="name">Vendor name</option>
+              <option value="monthlyCost">Monthly cost (low to high)</option>
+              <option value="setupCost">Setup cost (low to high)</option>
+              <option value="complianceScore">Compliance score (high to low)</option>
+              <option value="featureCount">Feature count (high to low)</option>
+            </select>
+          </label>
+
+          <div class="actions">
+            <button id="resetBtn" type="button">Reset filters</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="summary" aria-live="polite">
+        <div><strong id="visibleCount">0</strong> systems shown</div>
+        <div>Average monthly cost: <strong id="avgMonthly">$0</strong></div>
+      </section>
+
+      <section class="table-wrap" aria-label="POS comparison table">
+        <table>
+          <thead>
+            <tr>
+              <th><button class="sort-btn" data-sort="name">Vendor</button></th>
+              <th><button class="sort-btn" data-sort="monthlyCost">Monthly Cost</button></th>
+              <th><button class="sort-btn" data-sort="setupCost">Setup Cost</button></th>
+              <th><button class="sort-btn" data-sort="complianceScore">Compliance Score</button></th>
+              <th><button class="sort-btn" data-sort="featureCount">Feature Count</button></th>
+              <th>Core Features</th>
+              <th>Compliance Coverage</th>
+            </tr>
+          </thead>
+          <tbody id="dashboardBody"></tbody>
+        </table>
+      </section>
+
+      <footer>
+        <p>
+          Pricing and capability values are estimated planning figures for side-by-side evaluation.
+          Validate final Oregon compliance and commercial terms directly with each vendor before purchase.
+        </p>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
