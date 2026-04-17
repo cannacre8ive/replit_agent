@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="CannaCre8ive builds analytics, pricing, and web infrastructure for cannabis operators. Book a free digital audit and get a working action plan." />
+  <title>CannaCre8ive — Cannabis Intelligence Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d0f0e;
+      --surface: #141817;
+      --surface-2: #1c201e;
+      --border: #2f3732;
+      --sage: #8ec8a2;
+      --sage-dim: #5f9875;
+      --teal: #75d2ca;
+      --cream: #f4efe5;
+      --text: #e9e4da;
+      --muted: #bdc8c0;
+      --focus: #b6ffcf;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.65;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.13;
+      z-index: -1;
+      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.2) 1px, transparent 0);
+      background-size: 3px 3px;
+    }
+
+    a { color: inherit; }
+    .container { width: min(100% - 2.25rem, var(--max)); margin-inline: auto; }
+    .stack-24 > * + * { margin-top: 1.5rem; }
+    .stack-32 > * + * { margin-top: 2rem; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      border: 1px solid transparent;
+      border-radius: .5rem;
+      padding: .9rem 1.2rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: .2s ease;
+      min-width: 185px;
+    }
+
+    .btn:focus-visible,
+    .field:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #8ec8a2, #75d2ca);
+      color: #0b1511;
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); }
+
+    .btn-secondary {
+      border-color: var(--border);
+      color: var(--cream);
+      background: var(--surface-2);
+    }
+
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: .72rem;
+      color: var(--sage);
+    }
+
+    header {
+      padding: 4.75rem 0 3.5rem;
+      border-bottom: 1px solid var(--border);
+      background:
+        radial-gradient(closest-side at 90% 5%, rgba(117, 210, 202, .15), transparent 70%),
+        radial-gradient(closest-side at 10% 75%, rgba(142, 200, 162, .18), transparent 68%),
+        var(--bg);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.06;
+      color: var(--cream);
+    }
+
+    h1 { font-size: clamp(2.1rem, 5vw, 4.6rem); }
+    h2 { font-size: clamp(1.6rem, 4vw, 3rem); margin-bottom: .75rem; }
+
+    .lead {
+      max-width: 55ch;
+      color: var(--text);
+      font-size: 1.05rem;
+    }
+
+    .hero-points {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .7rem;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .hero-points li::before {
+      content: '✓';
+      margin-right: .6rem;
+      color: var(--sage);
+      font-weight: 700;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: .8rem;
+      padding: 1.25rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .75rem;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.85rem;
+      color: var(--sage);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .stat span { color: var(--muted); font-size: .9rem; }
+
+    section { padding: 3.5rem 0; border-bottom: 1px solid var(--border); }
+
+    .section-head { max-width: 72ch; margin-bottom: 1.8rem; }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: .75rem;
+    }
+
+    .tool {
+      grid-column: span 6;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: .8rem;
+      padding: 1.1rem;
+      display: grid;
+      gap: .75rem;
+    }
+
+    .tool.featured { grid-column: span 12; }
+    .tool h3 { font-size: 1.55rem; }
+    .tool p { color: var(--text); }
+    .tool ul { list-style: none; display: grid; gap: .4rem; color: var(--muted); font-size: .95rem; }
+    .tool li::before { content: '→ '; color: var(--teal); }
+
+    .status {
+      width: fit-content;
+      font-family: 'DM Mono', monospace;
+      font-size: .66rem;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      border-radius: 100px;
+      padding: .2rem .6rem;
+      border: 1px solid;
+    }
+
+    .live { color: #97e3b2; border-color: rgba(151,227,178,.4); background: rgba(151,227,178,.12); }
+    .beta { color: #8ce7e0; border-color: rgba(140,231,224,.4); background: rgba(140,231,224,.12); }
+    .dev { color: #d0aaf0; border-color: rgba(208,170,240,.4); background: rgba(208,170,240,.12); }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: .75rem;
+    }
+
+    .step { background: var(--surface); border: 1px solid var(--border); border-radius: .8rem; padding: 1rem; }
+    .step strong { color: var(--sage); font-family: 'DM Mono', monospace; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
+
+    .cta {
+      background: linear-gradient(120deg, rgba(142,200,162,.12), rgba(117,210,202,.09));
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .form {
+      display: grid;
+      gap: .65rem;
+      background: rgba(13, 15, 14, .65);
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: .65rem;
+    }
+
+    .field {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: .5rem;
+      background: #111412;
+      color: var(--cream);
+      padding: .72rem .8rem;
+      font: inherit;
+    }
+
+    .form small { color: var(--muted); font-size: .8rem; }
+
+    footer {
+      padding: 1.3rem 0 2rem;
+      color: var(--muted);
+      font-size: .9rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    @media (max-width: 1050px) {
+      .hero,
+      .cta {
+        grid-template-columns: 1fr;
+      }
+
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .pipeline { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 760px) {
+      header { padding: 4rem 0 2.75rem; }
+      .tools .tool,
+      .tools .tool.featured { grid-column: span 12; }
+      .pipeline { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .btn { width: 100%; }
+    }
+
+    @media (max-width: 460px) {
+      .stats { grid-template-columns: 1fr; }
+      .container { width: min(100% - 1.25rem, var(--max)); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container hero stack-24">
+      <div class="stack-24">
+        <p class="eyebrow">CannaCre8ive · Cannabis Intelligence Suite</p>
+        <h1>Turn Dispensary Data Into Revenue Growth.</h1>
+        <p class="lead">We build cannabis-specific analytics, pricing intelligence, and digital systems that help operators increase basket size, improve margins, and convert more local traffic into loyal customers.</p>
+        <ul class="hero-points">
+          <li>Free digital + operations audit with prioritized growth wins.</li>
+          <li>Working prototype before any long-term commitment.</li>
+          <li>Built by former dispensary operators, not generic consultants.</li>
+        </ul>
+        <div style="display:flex;gap:.7rem;flex-wrap:wrap;">
+          <a class="btn btn-primary" href="#lead-form">Book Your Free Audit</a>
+          <a class="btn btn-secondary" href="#suite">View the Tool Suite</a>
+        </div>
+      </div>
+      <aside class="card stack-24" aria-label="Performance proof points">
+        <p class="eyebrow">What you can improve</p>
+        <div class="stats">
+          <div class="stat"><strong>7</strong><span>Tools live or in build</span></div>
+          <div class="stat"><strong>3</strong><span>Core operator workflows covered</span></div>
+          <div class="stat"><strong>6+</strong><span>Years cannabis ops experience</span></div>
+          <div class="stat"><strong>1</strong><span>Partner focused on OR operators</span></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="suite">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">01 · Tool Suite</p>
+          <h2>Purpose-Built Systems for Cannabis Operations</h2>
+          <p class="lead">Each product removes a real bottleneck: slow reporting, weak pricing decisions, inconsistent team execution, or low-converting digital presence.</p>
+        </div>
+
+        <div class="tools">
+          <article class="tool featured">
+            <span class="status live">Live · v2</span>
+            <h3>CannaMetrics Dashboard</h3>
+            <p>Converts Dutchie POS exports into manager-ready reporting so you can spot profitable categories, underperforming SKUs, and staff coaching opportunities fast.</p>
+            <ul>
+              <li>Revenue, units, AOV, and margin trends by timeframe</li>
+              <li>Category and subcategory performance visibility</li>
+              <li>Staff and shift performance diagnostics</li>
+            </ul>
+          </article>
+
+          <article class="tool">
+            <span class="status beta">Beta</span>
+            <h3>CannaPrice Intelligence</h3>
+            <p>Benchmarks your menu against local market pricing to identify immediate repricing opportunities and protect margin.</p>
+            <ul>
+              <li>Competitor menu monitoring</li>
+              <li>Market median comparisons by category</li>
+              <li>SKU-level pricing recommendations</li>
+            </ul>
+          </article>
+
+          <article class="tool">
+            <span class="status dev">In Development</span>
+            <h3>Terpene Classifier</h3>
+            <p>Transforms lab COAs into plain-language effect profiles your team can use on the floor to improve recommendations and upsells.</p>
+            <ul>
+              <li>COA parsing and terpene normalization</li>
+              <li>Customer-facing effect summaries</li>
+              <li>Comparative product training view</li>
+            </ul>
+          </article>
+
+          <article class="tool">
+            <span class="status live">Live</span>
+            <h3>Dutchie Analytics SOP</h3>
+            <p>Operational playbook that standardizes reports, KPI definitions, team rituals, and ownership reviews across single or multi-location stores.</p>
+          </article>
+
+          <article class="tool">
+            <span class="status live">Live</span>
+            <h3>Dispensary Digital Audit</h3>
+            <p>Finds conversion leaks across Google Business, menu platforms, social channels, and website UX, then delivers a prioritized fix roadmap.</p>
+          </article>
+
+          <article class="tool">
+            <span class="status live">Live</span>
+            <h3>Cannabis Sales CRM Tracker</h3>
+            <p>Mobile-first account, reorder, and invoice workflow for wholesale reps and brand ambassadors.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">02 · Engagement Model</p>
+          <h2>How We Turn Insights Into Action</h2>
+        </div>
+        <div class="pipeline">
+          <article class="step"><strong>Step 01</strong><p>Free audit: we map bottlenecks across sales, pricing, and digital channels.</p></article>
+          <article class="step"><strong>Step 02</strong><p>Prototype: you receive a working artifact before committing long-term.</p></article>
+          <article class="step"><strong>Step 03</strong><p>Scope: fixed deliverables, timeline, and investment with no vague retainers.</p></article>
+          <article class="step"><strong>Step 04</strong><p>Build: implementation, training, and launch support.</p></article>
+          <article class="step"><strong>Step 05</strong><p>Optimize: optional monthly reporting, tuning, and growth support.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="lead-form">
+      <div class="container">
+        <div class="cta">
+          <div class="stack-24">
+            <p class="eyebrow">03 · Book Your Free Audit</p>
+            <h2>Get a 30-Minute Growth Diagnostic for Your Operation</h2>
+            <p class="lead">You'll receive a concise action plan with your top conversion and margin opportunities. No obligation. Just clarity on what to fix first.</p>
+            <ul class="hero-points">
+              <li>Best for dispensary owners, GMs, and inventory leads</li>
+              <li>Includes channel audit + quick-win recommendations</li>
+              <li>Delivered in plain language your team can execute</li>
+            </ul>
+          </div>
+
+          <form class="form" action="#" method="post">
+            <label for="name" class="sr-only">Name</label>
+            <input id="name" class="field" name="name" type="text" autocomplete="name" placeholder="Name" required />
+
+            <label for="email" class="sr-only">Email</label>
+            <input id="email" class="field" name="email" type="email" autocomplete="email" placeholder="Work email" required />
+
+            <label for="company" class="sr-only">Company</label>
+            <input id="company" class="field" name="company" type="text" placeholder="Dispensary or brand" />
+
+            <button class="btn btn-primary" type="submit">Request Free Audit</button>
+            <small>Prefer DM? Instagram: @cannacre8ive · Portland, OR</small>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <span>CannaCre8ive · Cannabis Digital Intelligence</span>
+    <span>© 2026 · Portland, Oregon</span>
+  </footer>
+</body>
+</html>
